@@ -4,7 +4,10 @@ import numpy as np
 import sys
 import os
 
-sys.path.insert(0, os.path.dirname(__file__))
+# Ensure the app directory is always on the path, both locally and on Streamlit Cloud
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
+if APP_DIR not in sys.path:
+    sys.path.insert(0, APP_DIR)
 
 from data.universe import load_universe, get_sectors, get_ticker_metadata
 from data.fetcher import fetch_metrics
